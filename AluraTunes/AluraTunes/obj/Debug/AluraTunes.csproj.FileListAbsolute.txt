@@ -1,0 +1,8 @@
+C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\AluraTunes.exe.config
+C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\AluraTunes.exe
+C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\AluraTunes.pdb
+C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.csproj.AssemblyReference.cache
+C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.csproj.SuggestedBindingRedirects.cache
+C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.csproj.CoreCompileInputs.cache
+C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.exe
+C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.pdb
