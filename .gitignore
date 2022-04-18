@@ -1,2 +1,6 @@
 *.vs
 *packages
+
+AluraTunes/AluraTunes/Data/*
+!AluraTunes/AluraTunes/Data/AluraTunes.sql
+!AluraTunes/AluraTunes/Data/AluraTunes.xml

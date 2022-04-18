@@ -12,6 +12,44 @@ namespace AluraTunes
         {
             using (var contexto = new AluraTunesEntities() )
             {
+                var buscaArtista = "Led Zeppelin";
+                var buscaAlbum = "Graffiti";
+
+                /*var query = from f in contexto.Faixas
+                            where f.Album.Artista.Nome.Contains(buscaArtista)
+                            select f;
+
+                if (!string.IsNullOrEmpty(buscaAlbum))
+                {
+                    query = query.Where(q => q.Album.Titulo.Contains(buscaAlbum));
+                }
+
+                query = query.OrderBy(q => q.Album.Titulo).ThenBy(q => q.Nome);*/
+
+
+                var query = from f in contexto.Faixas
+                            where f.Album.Artista.Nome.Contains(buscaArtista)
+                            && (!string.IsNullOrEmpty(buscaAlbum) 
+                            ? f.Album.Titulo.Contains(buscaAlbum) 
+                            : true)
+                            orderby f.Album.Titulo, f.Nome
+                            select f;
+
+                foreach (var faixa in query)
+                {
+                    Console.WriteLine("{0}\t{1}", faixa.Album.Titulo.PadRight(40), faixa.Nome);
+                }
+            }
+            //JoinLinQToEntities();
+            //LinQToEntities();
+            //QueryXML();
+            //QuerysBasicas();
+        }
+
+        private static void JoinLinQToEntities()
+        {
+            using (var contexto = new AluraTunesEntities())
+            {
                 var textoBusca = "Led";
 
                 var query = from a in contexto.Artistas
@@ -51,9 +89,6 @@ namespace AluraTunes
                     Console.WriteLine("{0}\t{1}", album.NomeArtista, album.NomeAlbum);
                 }
             }
-            //LinQToEntities();
-            //QueryXML();
-            //QuerysBasicas();
         }
 
         private static void LinQToEntities()
