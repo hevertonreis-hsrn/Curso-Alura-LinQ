@@ -15,3 +15,19 @@ C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debu
 C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\EntityFramework.xml
 C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Heverton Reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.csproj.CopyComplete
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.csproj.AssemblyReference.cache
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.csproj.CoreCompileInputs.cache
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.exe
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.pdb
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\AluraTunes.mdf
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\AluraTunes_log.ldf
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\Data\AluraTunes.mdf
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\Data\AluraTunes_log.ldf
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\AluraTunes.exe.config
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\AluraTunes.exe
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\AluraTunes.pdb
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\EntityFramework.dll
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\EntityFramework.xml
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\heverton.reis\Documents\Curso-Alura-LinQ\AluraTunes\AluraTunes\obj\Debug\AluraTunes.csproj.CopyComplete

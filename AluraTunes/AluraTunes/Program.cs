@@ -10,7 +10,30 @@ namespace AluraTunes
     {
         static void Main(string[] args)
         {
-            using (var contexto = new AluraTunesEntities() )
+            using (var contexto = new AluraTunesEntities())
+            {
+                var query = from f in contexto.Faixas
+                            where f.Album.Artista.Nome == "Led Zeppelin"
+                            select f;
+
+                //var quantidade = query.Count();
+
+                var quantidade = contexto.Faixas
+                    .Count(f => f.Album.Artista.Nome == "Led Zeppelin");
+
+                Console.WriteLine("Led Zeppelin tem {0} músicas no banco de dados",quantidade);
+            }
+
+            //Ordenação();
+            //JoinLinQToEntities();
+            //LinQToEntities();
+            //QueryXML();
+            //QuerysBasicas();
+        }
+
+        private static void Ordenação()
+        {
+            using (var contexto = new AluraTunesEntities())
             {
                 var buscaArtista = "Led Zeppelin";
                 var buscaAlbum = "Graffiti";
@@ -29,8 +52,8 @@ namespace AluraTunes
 
                 var query = from f in contexto.Faixas
                             where f.Album.Artista.Nome.Contains(buscaArtista)
-                            && (!string.IsNullOrEmpty(buscaAlbum) 
-                            ? f.Album.Titulo.Contains(buscaAlbum) 
+                            && (!string.IsNullOrEmpty(buscaAlbum)
+                            ? f.Album.Titulo.Contains(buscaAlbum)
                             : true)
                             orderby f.Album.Titulo, f.Nome
                             select f;
@@ -39,11 +62,21 @@ namespace AluraTunes
                 {
                     Console.WriteLine("{0}\t{1}", faixa.Album.Titulo.PadRight(40), faixa.Nome);
                 }
+
+                var query2 = contexto.NotasFiscais
+                    .OrderByDescending(nf => nf.Total)
+                    .ThenBy(nf => nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome);
+
+                Console.WriteLine();
+                foreach (var nota in query2)
+                {
+                    Console.WriteLine("{0}\t{1}\t{2}\t{3}",
+                        nota.DataNotaFiscal.ToShortDateString().ToString().PadRight(10),
+                        nota.Cliente.PrimeiroNome.PadRight(10),
+                        nota.Cliente.Sobrenome.PadRight(10),
+                        nota.Total);
+                }
             }
-            //JoinLinQToEntities();
-            //LinQToEntities();
-            //QueryXML();
-            //QuerysBasicas();
         }
 
         private static void JoinLinQToEntities()
