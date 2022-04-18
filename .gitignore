@@ -4,3 +4,6 @@
 AluraTunes/AluraTunes/Data/*
 !AluraTunes/AluraTunes/Data/AluraTunes.sql
 !AluraTunes/AluraTunes/Data/AluraTunes.xml
+
+AluraTunes/AluraTunes/obj
+AluraTunes/AluraTunes/bin
