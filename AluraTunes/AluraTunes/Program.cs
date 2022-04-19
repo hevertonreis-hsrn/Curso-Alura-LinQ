@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Xml.Linq;
 
 namespace AluraTunes
@@ -9,6 +10,131 @@ namespace AluraTunes
     internal class Program
     {
         static void Main(string[] args)
+        {
+            using (var contexto = new AluraTunesEntities() )
+            {
+                var vendaMedia = contexto.NotasFiscais.Average(nf => nf.Total);
+
+                Console.WriteLine("Venda Média: {0}", vendaMedia);
+
+                var query = from nf in contexto.NotasFiscais
+                            select nf.Total;
+
+                decimal mediana = Mediana(query);
+
+                Console.WriteLine("Mediana: {0}", mediana);
+
+                var vendaMediana = contexto.NotasFiscais.Mediana(nf => nf.Total);
+
+                Console.WriteLine("Mediana (com método de extensão): {0}", vendaMediana);
+
+            }
+
+            //MinMaxEMed();
+            //ContagemComFiltros();
+            //Soma();
+            //Contagem();
+            //Ordenação();
+            //JoinLinQToEntities();
+            //LinQToEntities();
+            //QueryXML();
+            //QuerysBasicas();
+        }
+
+        private static decimal Mediana(IQueryable<decimal> query)
+        {
+            var contagem = query.Count();
+
+            var queryOrdenada = query.OrderBy(total => total);
+
+            var elementoCentral_1 = queryOrdenada.Skip(contagem / 2).First();
+
+            var elementoCentral_2 = queryOrdenada.Skip((contagem - 1) / 2).First();
+
+            var mediana = (elementoCentral_1 + elementoCentral_2) / 2;
+
+            return mediana;
+        }
+
+        private static void MinMaxEMed()
+        {
+            using (var contexto = new AluraTunesEntities())
+            {
+                contexto.Database.Log = Console.WriteLine;
+
+                /*
+                var maiorVenda = contexto.NotasFiscais.Max(nf => nf.Total);
+                var menorVenda = contexto.NotasFiscais.Min(nf => nf.Total);
+                var vendaMedia = contexto.NotasFiscais.Average(nf => nf.Total);
+
+                Console.WriteLine("A maior venda é de R$ {0}", maiorVenda);
+                Console.WriteLine("A menor venda é de R$ {0}", menorVenda);
+                Console.WriteLine("A venda média é de R$ {0}", vendaMedia);
+                */
+
+                var vendas = (from nf in contexto.NotasFiscais
+                              group nf by 1 into agrupado
+                              select new
+                              {
+                                  maiorVenda = agrupado.Max(nf => nf.Total),
+                                  menorVenda = agrupado.Min(nf => nf.Total),
+                                  vendaMedia = agrupado.Average(nf => nf.Total)
+                              }).Single();
+
+
+                Console.WriteLine("A maior venda é de R$ {0}", vendas.maiorVenda);
+                Console.WriteLine("A menor venda é de R$ {0}", vendas.menorVenda);
+                Console.WriteLine("A venda média é de R$ {0}", vendas.vendaMedia);
+            }
+        }
+
+        private static void ContagemComFiltros()
+        {
+            using (var contexto = new AluraTunesEntities())
+            {
+                var query = from inf in contexto.ItemNotasFiscais
+                            where inf.Faixa.Album.Artista.Nome == "Led Zeppelin"
+                            group inf by inf.Faixa.Album into agrupado
+                            let vendasPorAlbum = agrupado.Sum(a => a.Quantidade * a.PrecoUnitario)
+                            orderby vendasPorAlbum
+                            descending
+                            select new
+                            {
+                                TituloDoAlbum = agrupado.Key.Titulo,
+                                TotalPorAlbum = vendasPorAlbum
+                            };
+
+                foreach (var agrupado in query)
+                {
+                    Console.WriteLine("{0}\t{1}",
+                        agrupado.TituloDoAlbum.PadRight(40),
+                        agrupado.TotalPorAlbum);
+                }
+
+            };
+        }
+
+        private static void Soma()
+        {
+            using (var contexto = new AluraTunesEntities())
+            {
+                var query = from inf in contexto.ItemNotasFiscais
+                            where inf.Faixa.Album.Artista.Nome == "Led Zeppelin"
+                            select new { totalDoItem = inf.Quantidade * inf.PrecoUnitario };
+
+                //foreach (var inf in query)
+                //{
+                //    Console.WriteLine("{0}",inf.totalDoItem);
+                //}
+
+                var totalDoArtista = query.Sum(q => q.totalDoItem);
+
+                Console.WriteLine("Total do artista: R$ {0}", totalDoArtista);
+
+            };
+        }
+
+        private static void Contagem()
         {
             using (var contexto = new AluraTunesEntities())
             {
@@ -21,14 +147,8 @@ namespace AluraTunes
                 var quantidade = contexto.Faixas
                     .Count(f => f.Album.Artista.Nome == "Led Zeppelin");
 
-                Console.WriteLine("Led Zeppelin tem {0} músicas no banco de dados",quantidade);
+                Console.WriteLine("Led Zeppelin tem {0} músicas no banco de dados", quantidade);
             }
-
-            //Ordenação();
-            //JoinLinQToEntities();
-            //LinQToEntities();
-            //QueryXML();
-            //QuerysBasicas();
         }
 
         private static void Ordenação()
@@ -259,6 +379,27 @@ namespace AluraTunes
         }
     }
 
+    static class LinQExtension
+    {
+
+        public static decimal Mediana<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector)
+        {
+            var contagem = source.Count();
+
+            var funcSelector = selector.Compile();
+
+            var queryOrdenada = source.Select(funcSelector).OrderBy(total => total);
+
+            var elementoCentral_1 = queryOrdenada.Skip(contagem / 2).First();
+
+            var elementoCentral_2 = queryOrdenada.Skip((contagem - 1) / 2).First();
+
+            var mediana = (elementoCentral_1 + elementoCentral_2) / 2;
+
+            return mediana;
+        }
+
+    }
     class Genero
     {
         public int Id { get; set; }
